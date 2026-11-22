@@ -22,7 +22,7 @@ public class Sudoku_Solver {
 			row++;
 			col = 0;
 		}
-		if(row==9) {
+		if (row == 9) {
 			return true;
 		}
 
@@ -41,6 +41,36 @@ public class Sudoku_Solver {
 			}
 		}
 		return false;
+	}
+
+	public static boolean isitsafe(int[][] grid, int row, int col, int val) {
+		// TODO Auto-generated method stub
+		// row
+		for (int i = 0; i < 9; i++) {
+			if (grid[row][i] == val) {
+				return false;
+
+			}
+		}
+		// col
+		for (int i = 0; i < 9; i++) {
+			if (grid[i][col] == val) {
+				return false;
+
+			}
+		}
+		// 3*3 Matrix
+		int r = row - row % 3;
+		int c = col - col % 3;
+		for (int i = r; i < r + 3; i++) {
+			for (int j = c; j < c + 3; j++) {
+				if (grid[i][j] == val) {
+					return false;
+
+				}
+			}
+		}
+		return true;
 	}
 
 }
